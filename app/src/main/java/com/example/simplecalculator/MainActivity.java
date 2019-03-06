@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         final GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+
+
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
