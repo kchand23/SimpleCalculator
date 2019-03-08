@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mymath.CalcClass;
 
@@ -61,13 +62,13 @@ public class CalcActivity extends AppCompatActivity {
                         inputText.setText(inputText.getText() + " * ");
                         break;
                     case (R.id.button5):
-                        inputText.setText(inputText.getText() + " sin ");
+                        inputText.setText(inputText.getText() + "sin ");
                         break;
                     case (R.id.button6):
-                        inputText.setText(inputText.getText() + " cos ");
+                        inputText.setText(inputText.getText() + "cos ");
                         break;
                     case (R.id.button7):
-                        inputText.setText(inputText.getText() + " tan ");
+                        inputText.setText(inputText.getText() + "tan ");
                         break;
                     case (R.id.button9):
                         inputText.setText(inputText.getText() + "1");
@@ -131,6 +132,7 @@ public class CalcActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 inputText.setText("");
+                outputText.setText("");
             }
         });
 
@@ -142,6 +144,11 @@ public class CalcActivity extends AppCompatActivity {
                 if(temp.length == 3)
                 {
                     float ans = c.evaluateTypeOne(inputText.getText().toString());
+                    outputText.setText(String.valueOf(ans));
+                }
+                else if(temp.length == 2)
+                {
+                    float ans = c.evaluateTypeTwo(inputText.getText().toString());
                     outputText.setText(String.valueOf(ans));
                 }
             }

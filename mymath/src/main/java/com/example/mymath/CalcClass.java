@@ -37,5 +37,28 @@ public class CalcClass {
         return (float) 0.0;
     }
 
-    
+    public float evaluateTypeTwo(String s)
+    {
+        String[]  statement = s.split(" ");
+        String trig = statement[0];
+        int num = Integer.parseInt(statement[1]);
+
+        if(trig.equals("sin"))
+        {
+            return (float) Math.sin(Math.toRadians(num));
+        }
+        else if(trig.equals("cos"))
+        {
+            return (float) Math.cos(Math.toRadians(num));
+        }
+
+        else if(trig.equals("tan"))
+        {
+            return (float) Math.tan(Math.toRadians(num));
+        }
+
+        return (float) 0.0;
+    }
+
+
 }
