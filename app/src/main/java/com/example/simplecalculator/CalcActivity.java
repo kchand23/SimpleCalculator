@@ -6,12 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mymath.CalcClass;
+
 public class CalcActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
+        final CalcClass c = new CalcClass();
         //Initialize all buttons
         Button addButton = (Button)findViewById(R.id.button);
         Button subButton = (Button)findViewById(R.id.button2);
@@ -32,8 +35,12 @@ public class CalcActivity extends AppCompatActivity {
         Button eightButton = (Button) findViewById(R.id.button16);
         Button nineButton = (Button) findViewById(R.id.button17);
         Button zeroButton = (Button) findViewById(R.id.button18);
+        
+        Button clearButton = (Button) findViewById(R.id.button8);
+        Button submitButton = (Button) findViewById(R.id.button19);
 
         final TextView inputText = (TextView) findViewById(R.id.textView);
+        final TextView outputText = (TextView) findViewById(R.id.textView2);
 
         //Define On Click listener for all buttons
         View.OnClickListener listener = new View.OnClickListener() {
@@ -42,18 +49,25 @@ public class CalcActivity extends AppCompatActivity {
                 switch (v.getId())
                 {
                     case (R.id.button):
+                        inputText.setText(inputText.getText() + " + ");
                         break;
                     case (R.id.button2):
+                        inputText.setText(inputText.getText() + " - ");
                         break;
                     case (R.id.button3):
+                        inputText.setText(inputText.getText() + " / ");
                         break;
                     case (R.id.button4):
+                        inputText.setText(inputText.getText() + " * ");
                         break;
                     case (R.id.button5):
+                        inputText.setText(inputText.getText() + " sin ");
                         break;
                     case (R.id.button6):
+                        inputText.setText(inputText.getText() + " cos ");
                         break;
                     case (R.id.button7):
+                        inputText.setText(inputText.getText() + " tan ");
                         break;
                     case (R.id.button9):
                         inputText.setText(inputText.getText() + "1");
@@ -91,6 +105,16 @@ public class CalcActivity extends AppCompatActivity {
             }
         };
 
+
+        addButton.setOnClickListener(listener);
+        subButton.setOnClickListener(listener);
+        divButton.setOnClickListener(listener);
+        mulButton.setOnClickListener(listener);
+
+        sinButton.setOnClickListener(listener);
+        cosButton.setOnClickListener(listener);
+        tanButton.setOnClickListener(listener);
+
         oneButton.setOnClickListener(listener);
         twoButton.setOnClickListener(listener);
         threeButton.setOnClickListener(listener);
@@ -102,5 +126,26 @@ public class CalcActivity extends AppCompatActivity {
         nineButton.setOnClickListener(listener);
         zeroButton.setOnClickListener(listener);
 
+        //Add listener to clear button
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputText.setText("");
+            }
+        });
+
+        //Add listener to submit button
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] temp = inputText.getText().toString().split(" ");
+                if(temp.length == 3)
+                {
+                    float ans = c.evaluateTypeOne(inputText.getText().toString());
+                    outputText.setText(String.valueOf(ans));
+                }
+            }
+        });
+        
     }
 }
